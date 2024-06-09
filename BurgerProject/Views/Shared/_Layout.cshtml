@@ -1,49 +1,315 @@
-﻿<!DOCTYPE html>
+﻿
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BurgerProject</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BurgerProject.styles.css" asp-append-version="true" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>BurgerGurme-@ViewData["Title"]</title>
+
+    <link href="//fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/client/css/style-starter.css">
+
+
+    @* boostrapten ikon eklemek için linki yazdım *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BurgerProject</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+
+      
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0">
+                <h1>
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index" >
+                        <img src="~/client/images/burger.png" alt="burger logo" width="35px" /> BurgerGurme
+                    </a>
+                </h1>
+                <button class="navbar-toggler collapsed bg-gradient" type="button" data-toggle="collapse"
+                        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index" >Anasayfa<span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item @@menu__active">
+                            <a class="nav-link" asp-controller="Menu" asp-action="Index" >Menüler</a>
                         </li>
+                        <li class="nav-item @@about__active">
+                            <a class="nav-link" asp-controller="Home" asp-action="About" >Hakkımızda</a>
+                        </li>
+                        <li class="nav-item @@contact__active">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact" >İletişim</a>
+                        </li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Hoşgeldin @User.Identity.Name
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Orders" asp-action="Index">Siparişlerim</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-controller="User" asp-action="Logout">Çıkış Yap</a>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item boostrap-icon">
+                                <a asp-controller="User" asp-action="Login">
+                                    <i class="bi bi-person"></i>
+                                </a>
+                            </li>
+                        }
+
+                        <!-- toggle switch for light and dark theme -->
+                        <li class="nav-item theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </li>
+                        <!-- //toggle switch for light and dark theme -->
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <!--/header-->
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - BurgerProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    @RenderBody()
+
+
+    <!-- footer -->
+    <footer class="py-5">
+        <div class="container py-xl-4">
+            <div class="row footer-top">
+                <div class="col-lg-4 footer-grid_section_1its footer-text">
+                   
+                    <h2>
+                        <a class="logo text-wh" href="index.html">
+                            <img src="~/client/images/burger.png" alt="burger logo" width="35px" /> BurgerGurme
+                        </a>
+                    </h2>
+                    <!-- //logo -->
+                    <p class="mt-lg-4 mt-3 mb-4 pb-lg-2">
+                        Lezzetin Adresi BurgerGurme, misafirlerimizin en iyi deneyimini yaşaması için titizlikle çalışmaktadır. Sağlığınız ve güvenliğiniz bizim için önemlidir.
+                    </p>
+
+                </div>
+                <div class="col-lg-4 col-sm-6 footer-grid_section_1its mt-lg-0 mt-5">
+                    <div class="footer-title">
+                        <h3>İletişim Bilgileri</h3>
+                    </div>
+                    <div class="footer-text mt-4">
+                        <p>
+                            <strong>Adres :</strong> BurgerGurme, Atatürk Caddesi     Çankaya/Ankara
+                        </p>
+                        <p class="my-2"><strong>Telefon :</strong> <a href="tel:03120000000">0312 000 00 00</a></p>
+                        
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 footer-grid_section_1its footer-text">
+                    
+                    <h2>
+                        <a class="logo text-wh" href="index.html">
+                            <img src="~/client/images/burger.png" alt="burger logo" width="35px" /> BurgerGurme
+                        </a>
+                    </h2>
+                  
+                    <p class="mt-lg-4 mt-3 mb-4 pb-lg-2">
+                        Siz de lezzetin tadına varın! BurgerGurme, size unutulmaz lezzetler sunmak için burada.
+                    </p>
+
+                </div>
+
+                
+                <div class="col-lg-4 footer-grid_section_1its footer-text">
+                   
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- //footer -->
+
+
+    <!-- copyright -->
+    <div class="cpy-right text-center py-4">
+        <p>© 2024 BurgerGurme. Tüm hakları saklıdır | Design by 
+            <a href="https://www.linkedin.com/in/burak-gonca/">Burak Gonca</a> |
+            <a href="https://www.linkedin.com/in/benguurgendemir/">Bengü Ürgen Demir</a> |
+            <a href="https://www.linkedin.com/in/ilgin-deniz-ayaz/">Ilgın Deniz Ayaz</a>
+
+        </p>
+    </div>
+
+
+    <!-- //copyright -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- /move top -->
+
+    <script src="~/client/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+
+    <script src="~/client/js/theme-change.js"></script><!-- theme switch js (light and dark)-->
+
+    <script src="~/client/js/owl.carousel.js"></script><!-- owl carousel -->
+    <!-- script for tesimonials carousel slider -->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo1").owlCarousel({
+                loop: true,
+                margin: 20,
+                nav: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    1000: {
+                        items: 1,
+                        nav: false,
+                        loop: false
+                    }
+                }
+            })
+        })
+    </script>
+    <!-- //script for tesimonials carousel slider -->
+
+    <script src="~/client/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+    </script>
+
+    <script src="~/client/js/counter.js"></script>
+
+    <!-- gallery popup js -->
+    <script src="~/client/js/smartphoto.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sm = new SmartPhoto(".js-img-viwer", {
+                showAnimation: false
+            });
+            // sm.destroy();
+        });
+    </script>
+    <!-- //gallery popup js -->
+    <!--/MENU-JS-->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!--//MENU-JS-->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="~/client/js/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+
 </body>
+
 </html>
