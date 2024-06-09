@@ -1,8 +1,242 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Ana Sayfa";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- banner section -->
+<section id="home" class="w3l-banner py-5">
+    <div class="container py-lg-5 py-md-4 mt-lg-0 mt-md-5 mt-4">
+        <div class="row align-items-center py-lg-5 py-4 mt-4">
+            <div class="col-lg-6 col-sm-12">
+                <h3 class="">En İyisini Keyifle Yaşayın</h3>
+                <h2 class="mb-4">BurgerGurme</h2>
+                <p>
+                    BurgerGurme, misafirlerimize unutulmaz bir deneyim yaşatmayı hedeflemektedir. Size en lezzetli burgerleri sunarken, titizlikle çalışıyor ve lezzet dolu anlar yaşamanızı sağlıyoruz. Giriş yaptığınızda menülerimiz arasından istediğiniz lezzeti seçebilir ve keyifle siparişinizi verebilirsiniz. Her bir müşterimizin damak zevkine uygun çeşitli seçeneklerimizle, BurgerGurme her zaman hizmetinizde!
+                </p>
+                <div class="mt-md-5 mt-4">
+                    <a class="btn btn-primary btn-style mr-2" asp-controller="Menu" asp-action="Index" > Menülerimiz </a>
+                    <a class="btn btn-outline-primary btn-style" href="#call"> Rezervasyon </a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //banner section -->
+<!-- /mobile section --->
+<section class="w3l-mobile-content-6 py-5">
+    <div class="mobile-info py-lg-5 py-md-4 py-2">
+        
+        <!-- /mobil-bilgi -->
+        <div class="container">
+            <div class="row mobile-info-inn mx-lg-0">
+                <div class="col-lg-4 mobile-right">
+                    <div class="row mobile-right-grids mb-lg-5 mb-4">
+                        <div class="col-2 mobile-right-icon">
+                            <div class="mobile-icon">
+                                <span class="fa fa-leaf"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 mobile-right-info">
+                            <h6><a href="#url">Doğal İçerikler</a></h6>
+                            <p>
+                                Lezzetli burgerlerimiz için en taze ve doğal malzemeleri kullanıyoruz.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mobile-right-grids mb-lg-5 mb-4">
+                        <div class="col-2 mobile-right-icon">
+                            <div class="mobile-icon">
+                                <span class="fa fa-shopping-basket"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 mobile-right-info">
+                            <h6><a href="#url">Taze Sebzeler & Et</a></h6>
+                            <p>
+                                Her ısırıkta tazelik ve lezzet sunmak için en kaliteli sebzeleri ve eti seçiyoruz.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mobile-right-grids">
+                        <div class="col-2 mobile-right-icon">
+                            <div class="mobile-icon">
+                                <span class="fa fa-users"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 mobile-right-info">
+                            <h6><a href="#url">Dünyanın En İyi Şefleri</a></h6>
+                            <p>
+                                Yemeklerimizin lezzeti için uzman şeflerimizin titiz çalışmalarıyla her zaman en iyisini sunuyoruz.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mobile-left">
+                    <img src="assets/images/burger1.png" class="img-fluid radius-image" alt="">
+                </div>
+                <div class="col-lg-4 mobile-right">
+                    <div class="row mobile-right-grids mb-lg-5 mb-4">
+                        <div class="col-2 mobile-right-icon">
+                            <div class="mobile-icon">
+                                <span class="fa fa-cogs"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 mobile-right-info">
+                            <h6><a href="#url">En Kaliteli Ürünler</a></h6>
+                            <p>
+                                Müşterilerimize en üst düzey kalitede hizmet sunabilmek için en kaliteli ürünleri tercih ediyoruz.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mobile-right-grids mb-lg-5 mb-4">
+                        <div class="col-2 mobile-right-icon">
+                            <div class="mobile-icon">
+                                <span class="fa fa-motorcycle"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 mobile-right-info">
+                            <h6><a href="#url">En Hızlı Kapı Teslimi</a></h6>
+                            <p>
+                                Siparişlerinizi en hızlı şekilde adresinize ulaştırıyoruz, lezzeti kapınıza getiriyoruz.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mobile-right-grids">
+                        <div class="col-2 mobile-right-icon">
+                            <div class="mobile-icon">
+                                <span class="fa fa-thumbs-down"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 mobile-right-info">
+                            <h6><a href="#url">Kıyma & Düşük Yağ Oranı</a></h6>
+                            <p>
+                                Sağlıklı bir alternatif arayanlar için kıymamızın düşük yağ içeriğiyle sağlıklı bir seçenek sunuyoruz.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- //mobil-bilgi -->
+
+
+    </div>
+</section>
+<!-- //mobile section --->
+<!-- middle -->
+<div class="middle py-5" id="call">
+    <div class="container py-lg-3">
+        <div class="welcome-left text-center py-md-5 py-3">
+            <h3>
+                Doğru Burger İçin
+                Doğru Malzemeler. Sağlıklı, Lezzetli ve Mükemmel Burgerlerimizi Deneyin
+            </h3>
+            <h3 class="mt-4">Sipariş için bizi arayın: <a href="tel:0312 000 00 00">0312 000 00 00</a> </h3>
+            
+           
+        </div>
+    </div>
 </div>
+<!-- middle -->
+
+<!--  Work gallery section -->
+<div class="w3l-gallery2" id="gallery">
+    <div class="burger galleryks py-5">
+        <div class="container py-lg-4 py-md-3">
+            <h6 class="title-small text-center">Galeri</h6>
+            <h3 class="title-big mb-lg-5 mb-4 text-center">Burger Galerimiz</h3>
+            <div class="row no-gutters masonry">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="~/client/images/g1.jpg" class="js-img-viwer d-block" data-caption="The Right Ingredients for the Right Food."
+                       data-id="lion">
+                        <img src="~/client/images/g1.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
+                        <div class="content-overlay"></div>
+                        <div class="content-details fadeIn-top">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                            <h4>En iyisini keyfile yaşayın</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="~/client/images/g2.jpg" class="js-img-viwer d-block" data-caption="The Right Ingredients for the Right Food."
+                       data-id="camel">
+                        <img src="~/client/images/g2.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
+                        <div class="content-overlay"></div>
+                        <div class="content-details fadeIn-top">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                            <h4>En iyisini keyfile yaşayın</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="~/client/images/g3.jpg" class="js-img-viwer d-block" data-caption="The Right Ingredients for the Right Food."
+                       data-id="hippopotamus">
+                        <img src="~/client/images/g3.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
+                        <div class="content-overlay"></div>
+                        <div class="content-details fadeIn-top">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                            <h4>En iyisini keyfile yaşayın</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="~/client/images/g4.jpg" class="js-img-viwer d-block" data-caption="The Right Ingredients for the Right Food."
+                       data-id="koala">
+                        <img src="~/client/images/g4.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
+                        <div class="content-overlay"></div>
+                        <div class="content-details fadeIn-top">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                            <h4>En iyisini keyfile yaşayın</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="~/client/images/g5.jpg" class="js-img-viwer d-block" data-caption="The Right Ingredients for the Right Food."
+                       data-id="bear">
+                        <img src="~/client/images/g5.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
+                        <div class="content-overlay"></div>
+                        <div class="content-details fadeIn-top">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                            <h4>En iyisini keyfile yaşayın</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="~/client/images/g6.jpg" class="js-img-viwer d-block" data-caption="The Right Ingredients for the Right Food."
+                       data-id="rhinoceros">
+                        <img src="~/client/images/g6.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
+                        <div class="content-overlay"></div>
+                        <div class="content-details fadeIn-top">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                            <h4>En iyisini keyfile yaşayın</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="~/client/images/g7.jpg" class="js-img-viwer d-block" data-caption="The Right Ingredients for the Right Food."
+                       data-id="hippopotamus">
+                        <img src="~/client/images/g7.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
+                        <div class="content-overlay"></div>
+                        <div class="content-details fadeIn-top">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                            <h4>En iyisini keyfile yaşayın</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="~/client/images/g8.jpg" class="js-img-viwer d-block" data-caption="The Right Ingredients for the Right Food."
+                       data-id="koala">
+                        <img src="~/client/images/g8.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
+                        <div class="content-overlay"></div>
+                        <div class="content-details fadeIn-top">
+                            <span class="fa fa-plus" aria-hidden="true"></span>
+                            <h4>En iyisini keyfile yaşayın</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  //Work gallery section -->
