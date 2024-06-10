@@ -9,7 +9,7 @@ namespace BurgerProject.Models.Account
         public int UserId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-		public string Address { get; set; }
+		public string? Address { get; set; }
 
 		[EmailAddress]
         public string Email { get; set; }
@@ -22,7 +22,7 @@ namespace BurgerProject.Models.Account
 
 
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Şifre ile şifre tekrarı aynı değildir.")]
+        //[Compare("Password", ErrorMessage = "Şifre ile şifre tekrarı aynı değildir.")]
         public string ConfirmPassword { get; set; }
 
 

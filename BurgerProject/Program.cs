@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace BurgerProject
 {
-    public class Program
+	public class Program
 	{
 		public static void Main(string[] args)
 		{
@@ -41,11 +41,11 @@ namespace BurgerProject
 
 
 
-            // Validation ekleme
-            builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+			// Validation ekleme
+			builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 
-            var app = builder.Build();
+			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
 			if (!app.Environment.IsDevelopment())
@@ -83,3 +83,5 @@ namespace BurgerProject
 		}
 	}
 }
+
+
