@@ -25,6 +25,7 @@ namespace BurgerProject.Controllers
 		}
 
 
+
         public IActionResult Contact()
         {
             return View();
@@ -32,6 +33,7 @@ namespace BurgerProject.Controllers
 
 
 
+       
 
 
 

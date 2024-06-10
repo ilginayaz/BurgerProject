@@ -24,6 +24,15 @@
 					<div class="col-lg-8">
 						<h3 class="title-big" style="text-align:center">Sistemimizde kayıtlı e-mail adresiniz ve şifrenizle giriş yapabilirsiniz</h3>
 						<p class="mb-4 mt-lg-0 mt-2" style="text-align:center">Lütfen alanları eksiksiz ve doğru bir biçimde doldurunuz</p>
+						@if (TempData["Message"] is not null)
+						{
+							<div class="alert alert-success">@TempData["Message"]</div>
+						}
+
+						@if (ViewBag.ErrorMessage is not null)
+						{
+							<div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+						}
 						<form asp-controller="User" asp-action="Login" role="form" method="post" class="text-right">
 							<div class="form-grid">
 

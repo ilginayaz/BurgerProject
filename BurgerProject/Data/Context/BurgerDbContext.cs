@@ -11,6 +11,7 @@ namespace BurgerProject.Data.Context
 		public DbSet<Menu> Menus { get; set; }
 		public DbSet<Order> Orders { get; set; }
 
+
 		public BurgerDbContext(DbContextOptions<BurgerDbContext> options) : base(options)
 		{
 
@@ -39,7 +40,8 @@ namespace BurgerProject.Data.Context
 						NormalizedUserName = "ADMIN",
 						Email = "admin@admin.com",
 						EmailConfirmed = true,
-						NormalizedEmail = "ADMIN@ADMIN.COM",
+						SecurityStamp= "3706511C-7374-4B05-BD82-E5708D7F6B9A",
+                        NormalizedEmail = "ADMIN@ADMIN.COM",
 						PasswordHash = hasher.HashPassword(null, "12345*Abcde")
 					}
 				);

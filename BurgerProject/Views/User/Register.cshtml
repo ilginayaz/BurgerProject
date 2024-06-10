@@ -5,45 +5,86 @@
 }
 
 
-@model LoginViewModel 
+@model UserViewModel
 
 
 <!--/header-->
 <section class="w3l-about-breadcrumb">
-    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
-        <div class="container py-lg-5 py-md-3">
-            <h2 class="title">Giriş Yap</h2>
-        </div>
-    </div>
+	<div class="breadcrumb-bg breadcrumb-bg-about py-5">
+		<div class="container py-lg-5 py-md-3">
+			<h2 class="title">Kayıt Ol</h2>
+		</div>
+	</div>
 </section>
 <!-- contacts -->
 <section class="w3l-contact-7 py-5" id="contact">
-    <div class="contacts-9 py-lg-5 py-md-4">
-        <div class="container">
-            <div class="top-map">
-                <div class="row map-content-9">
-                    <div class="col-lg-8">
-                        <h3 class="title-big" style="text-align:center">Sistemimizde kayıtlı e-mail adresiniz ve şifrenizle giriş yapabilirsiniz</h3>
-                        <p class="mb-4 mt-lg-0 mt-2" style="text-align:center">Lütfen alanları eksiksiz ve doğru bir biçimde doldurunuz</p>
-                        <form asp-controller="User" asp-action="Register" role="form" method="post" class="text-right">
-                            <div class="form-grid">
+	<div class="contacts-9 py-lg-5 py-md-4">
+		<div class="container">
+			<div class="top-map">
+				<div class="row map-content-9">
+					<div class="col-lg-8">
+						
+						<p class="mb-4 mt-lg-0 mt-2" style="text-align:center">Lütfen alanları eksiksiz ve doğru bir biçimde doldurunuz</p>
+						@if (ViewBag.ErrorMessage is not null)
+						{
+							<div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+						}
 
-                                <input name="name" type="text" name="w3lSender" id="w3lSender" placeholder="Email*" required="">
-                                <input name="password" type="password" id="w3lSender" placeholder="Şifre*" required="">
-                                <button type="submit" class="btn btn-primary btn-style mt-3">Giriş Yap</button>
-                                <a asp-action="Register" class="btn btn-primary btn-style mt-3">Kayıt Ol</a>
+						@*    <form asp-controller="User" asp-action="Register" role="form" method="post" class="text-right">
+						<div class="form-grid">
+
+						<input name="name" type="text"  id="w3lSender" placeholder="Ad*" required="">
+						<input name="surname" type="text"  id="w3lSender" placeholder="Soyad*" required="">
+						<input name="address" type="text" id="w3lSender" placeholder="Adres*" required="">
+						<input name="email" type="email" id="w3lSender" placeholder="E-mail*" required="">
+						<input name="password" type="password" id="w3lSender" placeholder="Şifre*" required="">
+						<input name="confirmpassword" type="password" id="w3lSender" placeholder="Şifre Tekrarı*" required="">
+
+						<button type="submit" class="btn btn-primary btn-style mt-3" style="width: 100%;" >Kayıt Ol</button>
 
 
 
-                            </div>
+						</div>
 
 
 
-                        </form>
-                    </div>
+						</form> *@
 
-                </div>
-            </div>
-        </div>
-    </div>
+
+						<form asp-controller="User" asp-action="Register" role="form" method="post">
+							<div class="form-grid">
+								<input name="name" type="text" id="w3lSender" placeholder="Ad*" required>
+								<input name="surname" type="text" id="w3lSender" placeholder="Soyad*" required>
+								<input name="address" type="text" id="w3lSender" placeholder="Adres*" required>
+								<input name="email" type="email" id="w3lSender" placeholder="E-mail*" required>
+								<input name="password" type="password" id="w3lSender" placeholder="Şifre*" required>
+								<input name="confirmpassword" type="password" id="w3lSender" placeholder="Şifre Tekrarı*" required>
+
+								<div style="width: 100%;">
+									<button type="submit" class="btn btn-primary btn-style mt-3" style="width: 100%;">Kayıt Ol</button>
+								</div>
+							</div>
+						</form>
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
+
+
+<style>
+	.form-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+		.form-grid input, .form-grid button {
+			width: 100%;
+		}
+
+</style>
