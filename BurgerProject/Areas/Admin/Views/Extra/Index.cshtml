@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BurgerProject.Data.Entities.Concrete.Extra>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .fixed-size-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover; /* Görüntüyü kırparak sığdırır */
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <section id="home" class="w3l-banner py-5">
+        <div class="container py-lg-5 py-md-4 mt-lg-0 mt-md-5 mt-4">
+            <div class="row align-items-center py-lg-5 py-4 mt-4">
+                <div class="col-lg-6 col-sm-12">
+                    <p>
+                        <a asp-action="Create">Create New</a>
+                    </p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ExtraName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ExtraPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LogoFile)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ExtraName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ExtraPrice)
+                                    </td>
+                                    <td>
+                                        <img src="@item.LogoFile" class="fixed-size-image" alt="Logo" />
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="col-lg-5">
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

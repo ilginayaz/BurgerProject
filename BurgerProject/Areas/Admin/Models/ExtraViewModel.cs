@@ -1,5 +1,4 @@
-﻿using BurgerProject.Data.Entities.Concrete;
-
+﻿
 namespace BurgerProject.Areas.Admin.Models
 {
 	public class ExtraViewModel
@@ -7,9 +6,8 @@ namespace BurgerProject.Areas.Admin.Models
 
 		public string ExtraName { get; set; }
 		public double ExtraPrice { get; set; }
+        public IFormFile? LogoFile { get; set; }
 
 
-		
-
-	}
+    }
 }

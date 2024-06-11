@@ -4,6 +4,7 @@ using BurgerProject.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BurgerProject.Migrations
 {
     [DbContext(typeof(BurgerDbContext))]
-    partial class BurgerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240610090511_bir")]
+    partial class bir
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,14 +108,14 @@ namespace BurgerProject.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a451c5fc-afe5-4e65-8b6a-e7db04190e18",
+                            ConcurrencyStamp = "731df7f3-5da8-4cef-8fcd-f78cc21cb62b",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Admin",
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEhpIDyboPd81O2tr/BduphuzjXk4Fk/I4pthWqK0yDTj/EPf88G5wXaFewiWXzP7A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHTytsQPg8L0FXiXOK70qAVqh/DNsOeXXu647SVcOFWVKO9Ok9K754dHIxNaK25YKw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "3706511C-7374-4B05-BD82-E5708D7F6B9A",
                             Surname = "Admin",
@@ -139,10 +142,7 @@ namespace BurgerProject.Migrations
                     b.Property<double>("ExtraPrice")
                         .HasColumnType("float");
 
-                    b.Property<string>("LogoFile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -404,7 +404,9 @@ namespace BurgerProject.Migrations
                 {
                     b.HasOne("BurgerProject.Data.Entities.Concrete.Order", "Order")
                         .WithMany("Extras")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Order");
                 });
