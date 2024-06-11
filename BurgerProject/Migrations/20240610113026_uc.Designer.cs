@@ -4,6 +4,7 @@ using BurgerProject.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BurgerProject.Migrations
 {
     [DbContext(typeof(BurgerDbContext))]
-    partial class BurgerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240610113026_uc")]
+    partial class uc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,14 +108,14 @@ namespace BurgerProject.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a451c5fc-afe5-4e65-8b6a-e7db04190e18",
+                            ConcurrencyStamp = "c15ccbf9-4809-4a07-91f9-1a8d1f57a63c",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Admin",
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEhpIDyboPd81O2tr/BduphuzjXk4Fk/I4pthWqK0yDTj/EPf88G5wXaFewiWXzP7A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECLaSumVM1l15jVSQ0PYdbcv/3QWW39DXa/rs7DGqW/2Ya0BqrfI2CrJVffew7bHlg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "3706511C-7374-4B05-BD82-E5708D7F6B9A",
                             Surname = "Admin",

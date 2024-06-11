@@ -1,0 +1,51 @@
+﻿@model BurgerProject.Data.Entities.Concrete.Extra
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <p>
+        Silmek istediğinize emin misiniz?
+    </p>
+    <section id="home" class="w3l-banner py-5">
+        <div class="container py-lg-5 py-md-4 mt-lg-0 mt-md-5 mt-4">
+            <div class="row align-items-center py-lg-5 py-4 mt-4">
+                <div class="col-lg-6 col-sm-12">
+                    <h4>Extra</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.ExtraName)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.ExtraName)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.ExtraPrice)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.ExtraPrice)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.LogoFile)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.LogoFile)
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="Delete" class="btn btn-danger" /> |
+                        <a asp-action="Index">Back to List</a>
+                    </form>
+                </div>
+             
+            </div>
+        </div>
+    </section>
+</body>
+</html>
