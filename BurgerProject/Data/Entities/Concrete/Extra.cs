@@ -8,10 +8,12 @@ namespace BurgerProject.Data.Entities.Concrete
         public string ExtraName { get; set; }
         public double ExtraPrice { get; set; }
 
+        public string? LogoFile { get; set; }
+
 
         //iliskiler
 
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
         public Order? Order { get; set; }
 
 
