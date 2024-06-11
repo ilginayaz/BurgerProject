@@ -10,9 +10,10 @@ namespace BurgerProject.Data.Entities.Concrete
 
 		public string? ImageName { get; set; }
 
-		//iliskiler
+        //iliskiler
 
-		public List<OrderMenu>? OrderMenus { get; set; }
+        public List<Order> Orders { get; set; }
 
-	}
+
+    }
 }

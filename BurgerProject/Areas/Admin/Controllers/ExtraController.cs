@@ -10,7 +10,7 @@ using BurgerProject.Areas.Admin.Models;
 namespace BurgerProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class ExtraController : Controller
     {
         private readonly BurgerDbContext _burgerDbContext;
@@ -58,12 +58,12 @@ namespace BurgerProject.Areas.Admin.Controllers
                 var extent = Path.GetExtension(extraViewModel.LogoFile.FileName);
                 var dumyName = Guid.NewGuid().ToString();
                 dumyName += extent;
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot//admin//images//extra", dumyName);
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", dumyName);
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     await extraViewModel.LogoFile.CopyToAsync(stream);
                 }
-                extra.LogoFile = "/admin/images/extra/" + dumyName;
+                extra.LogoFile = dumyName;
 
 
             }
@@ -157,12 +157,12 @@ namespace BurgerProject.Areas.Admin.Controllers
                         var extent = Path.GetExtension(extraViewModel.LogoFile.FileName);
                         var dumyName = Guid.NewGuid().ToString();
                         dumyName += extent;
-                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot//admin//images//extra", dumyName);
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", dumyName);
                         using (var stream = new FileStream(path, FileMode.Create))
                         {
                             await extraViewModel.LogoFile.CopyToAsync(stream);
                         }
-                        oldExtra.LogoFile = "/admin/images/extra/" + dumyName;
+                        oldExtra.LogoFile = "wwwroot/images" + dumyName;
 
                     }
                     oldExtra.UpdatedDate = DateTime.Now;
@@ -218,14 +218,19 @@ namespace BurgerProject.Areas.Admin.Controllers
         }
         public void DeleteLogoFile(Extra extra)
         {
-            var resmiKullananBaskaVarMi = _burgerDbContext.Extras.Any(u => u.LogoFile == extra.LogoFile && u.Id != extra.Id);
-            if (!resmiKullananBaskaVarMi)
-            {
-                string webRootPath = _hostingEnvironment.WebRootPath;
-                string deleteLogo = Path.Combine(webRootPath + extra.LogoFile);
+            if (extra.LogoFile != null){
+                var resmiKullananBaskaVarMi = _burgerDbContext.Extras.Any(u => u.LogoFile == extra.LogoFile && u.Id != extra.Id);
+                if (!resmiKullananBaskaVarMi)
+                {
+                    string webRootPath = _hostingEnvironment.WebRootPath;
+                    //string deleteLogo = Path.Combine(webRootPath + extra.LogoFile);
 
-                System.IO.File.Delete(deleteLogo);
+                    var deleteLogo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", extra.LogoFile);
+
+                    System.IO.File.Delete(deleteLogo);
+                }
             }
+           
         }
         private bool HotelExists(int id)
         {

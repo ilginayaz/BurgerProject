@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BurgerProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class MenuController : Controller
     {
         private readonly BurgerDbContext _dbContext;
