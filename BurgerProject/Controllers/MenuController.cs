@@ -1,7 +1,13 @@
 ﻿
 using BurgerProject.Data.Context;
+using BurgerProject.Data.Entities.Concrete;
+using BurgerProject.Data.Enums;
 using BurgerProject.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace BurgerProject.Controllers
 {
@@ -9,10 +15,12 @@ namespace BurgerProject.Controllers
 	{
 
 		private readonly BurgerDbContext _context;
+		private UserManager<AppUser> _userManager;
 
-		public MenuController(BurgerDbContext context)
+		public MenuController(BurgerDbContext context, UserManager<AppUser> userManager)
 		{
 			_context = context;
+			_userManager = userManager;
 		}
 
 		public IActionResult Index()
@@ -28,6 +36,55 @@ namespace BurgerProject.Controllers
 		}
 
 
+       
+
+        [HttpPost]
+        public IActionResult CreateOrder(OrderViewModel orderViewModel, List<int> selectedExtras)
+        {
+            var userId = Convert.ToInt32(_userManager.GetUserId(HttpContext.User)); //sisteme login olanın id'sini verir.
+
+        //    var userOrders = _context.Orders
+        //.Include(o => o.Extras) // Ekstraları da al
+        //.Where(o => o.AppUserId == userId)
+        //.ToList();
+
+            if (ModelState.IsValid)
+            {
+                // Seçilen ekstra malzemelerin listesini oluştur
+                var selectedExtraList = new List<Extra>();
+                if (selectedExtras != null && selectedExtras.Any())
+                {
+                    foreach (var extraId in selectedExtras)
+                    {
+                        var extra = _context.Extras.Find(extraId);
+                        if (extra != null)
+                        {
+                            selectedExtraList.Add(extra);
+                        }
+                    }
+                }
+
+                // Yeni bir sipariş oluştur
+                Order order = new Order
+                {
+                    OrderSize = orderViewModel.OrderSize,
+                    MenuId = orderViewModel.MenuId,
+                    Piece = orderViewModel.Piece,
+                    AppUserId = userId,
+                    CreatedDate = DateTime.Now,
+                    Extras = selectedExtraList // Seçilen ekstra malzemeleri ekle
+                };
+
+                // Yeni siparişi kaydet
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            // Model geçersizse, aynı sayfayı tekrar göster
+            return View();
+        }
 
 
 
@@ -36,5 +93,7 @@ namespace BurgerProject.Controllers
 
 
 
-	}
+
+
+    }
 }

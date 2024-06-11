@@ -16,9 +16,13 @@ namespace BurgerProject.Data.Entities.Concrete
 
 
 		public List<Extra>? Extras { get; set; }
+		
+
+        public  int MenuId { get; set; }
+        public Menu? Menu { get; set; }
 
 
-        public List<OrderMenu>? OrderMenus { get; set; }
+
 
     }
 }

@@ -105,14 +105,14 @@ namespace BurgerProject.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a451c5fc-afe5-4e65-8b6a-e7db04190e18",
+                            ConcurrencyStamp = "5161d9fb-47b7-41b4-8c13-48a705b6b9e4",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Admin",
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEhpIDyboPd81O2tr/BduphuzjXk4Fk/I4pthWqK0yDTj/EPf88G5wXaFewiWXzP7A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENx/XEPKx+nqf64ODioKF+7jEvSpfN2BYVbt6LSwDRZCUJRDEqTXTzjubj8CnzkVZA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "3706511C-7374-4B05-BD82-E5708D7F6B9A",
                             Surname = "Admin",
@@ -201,6 +201,9 @@ namespace BurgerProject.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("MenuId")
+                        .HasColumnType("int");
+
                     b.Property<int>("OrderSize")
                         .HasColumnType("int");
 
@@ -214,36 +217,9 @@ namespace BurgerProject.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("BurgerProject.Data.Entities.Concrete.OrderMenu", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("MenuId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
                     b.HasIndex("MenuId");
 
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderMenu");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -417,26 +393,15 @@ namespace BurgerProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("BurgerProject.Data.Entities.Concrete.OrderMenu", b =>
-                {
                     b.HasOne("BurgerProject.Data.Entities.Concrete.Menu", "Menu")
-                        .WithMany("OrderMenus")
+                        .WithMany("Orders")
                         .HasForeignKey("MenuId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BurgerProject.Data.Entities.Concrete.Order", "Order")
-                        .WithMany("OrderMenus")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("AppUser");
 
                     b.Navigation("Menu");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -497,14 +462,12 @@ namespace BurgerProject.Migrations
 
             modelBuilder.Entity("BurgerProject.Data.Entities.Concrete.Menu", b =>
                 {
-                    b.Navigation("OrderMenus");
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("BurgerProject.Data.Entities.Concrete.Order", b =>
                 {
                     b.Navigation("Extras");
-
-                    b.Navigation("OrderMenus");
                 });
 #pragma warning restore 612, 618
         }
