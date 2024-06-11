@@ -1,0 +1,78 @@
+﻿@model BurgerProject.Models.MenuViewModel
+
+@{
+    ViewData["Title"] = "Menü";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="//fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="assets/css/style-starter.css">
+</head>
+<body>
+
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container py-lg-5 py-md-3">
+                <h2 class="title">Menülerimiz</h2>
+            </div>
+        </div>
+    </section>
+
+    <div class="w3l-menublock py-5">
+        <!-- menu block -->
+        <div id="w3l-menublock" class="text-center py-lg-4 py-md-3">
+            <div class="container">
+                <section id="content1" class="tab-content text-left">
+                    <div class="row menu-body">
+                        @foreach (var item in Model.Menus)
+                        {
+                            <div class="col-lg-6 menu-section pr-lg-5">
+                                <!-- Item starts -->
+                                <div class="menu-item">
+                                    <div>
+                                        <div class="row border-dot no-gutters">
+                                            <div class="col-8 menu-item-name">
+                                                <h6>@item.MenuName</h6>
+                                            </div>
+                                            <div class="col-4 menu-item-price text-right">
+                                                <h6>@item.MenuPrice.ToString("C")</h6>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item-description">
+                                            <p>@item.MenuPiece</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-8">
+                                            <select class="form-control">
+                                                <option value="">Ekstra Malzemeler</option>
+                                                @foreach (var extra in Model.Extras)
+                                                {
+                                                    <option value="@extra.Id">@extra.ExtraName (@extra.ExtraPrice.ToString("C"))</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <button class="btn btn-primary">Sipariş Oluştur</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Item ends -->
+                            </div>
+                        }
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- menu block -->
+    </div>
+</body>
+</html>
