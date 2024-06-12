@@ -57,7 +57,7 @@
                 <td>@order.TotalPrice TL</td>
                 <td>
                     <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.Id" class="btn btn-warning">Düzenle</a>
-                    <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.Id" class="btn btn-danger">Sil</a>
+                    <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.Id" class="btn btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a>
                 </td>
             </tr>
             rowNumber++;
