@@ -7,44 +7,44 @@
     <title>Edit Extra</title>
 </head>
 <body>
-    <p>
-        <a asp-action="Create" class="btn btn-success">Create New</a>
-    </p>
-    <section id="home" class="w3l-banner py-5">
-        <div class="container py-lg-5 py-md-4 mt-lg-0 mt-md-5 mt-4">
-            <div class="row align-items-center py-lg-5 py-4 mt-4">
-                <div class="col-lg-6 col-sm-12">
 
-                    <form asp-action="Edit" enctype="multipart/form-data">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                       
-                        <div class="form-group">
-                            <label asp-for="ExtraName" class="control-label">@Html.DisplayNameFor(m => m.ExtraName)</label>
-                            <input asp-for="ExtraName" class="form-control" />
-                            <span asp-validation-for="ExtraName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="ExtraPrice" class="control-label">@Html.DisplayNameFor(m => m.ExtraPrice)</label>
-                            <input asp-for="ExtraPrice" class="form-control" />
-                            <span asp-validation-for="ExtraPrice" class="text-danger"></span>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="LogoFile" class="control-label">Logo File</label>
-                            <input type="file" name="LogoFile" id="LogoFile" class="form-control-file" accept="image/png" />
-                            <span asp-validation-for="LogoFile" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Güncelle" class="btn btn-primary" />
-                        </div>
-                    </form>
-                </div>
-                <div class="col-lg-5">
-                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                </div>
+    <h3>Extra Edit</h3>
+    <hr />
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="ExtraName" class="control-label">@Html.DisplayNameFor(m => m.ExtraName)</label>
+                        <input asp-for="ExtraName" class="form-control" />
+                        <span asp-validation-for="ExtraName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExtraPrice" class="control-label">@Html.DisplayNameFor(m => m.ExtraPrice)</label>
+                        <input asp-for="ExtraPrice" class="form-control" />
+                        <span asp-validation-for="ExtraPrice" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="LogoFile" class="control-label">Logo File</label>
+                        <input type="file" name="LogoFile" id="LogoFile" class="form-control-file" accept="image/png" />
+                        <span asp-validation-for="LogoFile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Güncelle" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
+
         </div>
-    </section>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
 </body>
 </html>
 
