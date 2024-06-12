@@ -14,7 +14,7 @@ namespace BurgerProject.Data.Entities.Concrete
         //iliskiler
 
         public int? OrderId { get; set; }
-        public Order? Order { get; set; }
+        public List<Order>? Order { get; set; }
 
 
     }

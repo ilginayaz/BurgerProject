@@ -16,6 +16,8 @@ namespace BurgerProject.Models
        
         public string MenuName { get; set; }
         public double TotalPrice { get; set; }
+        public double TotalExtraPrice { get; set; }
+        public double MenuPrice {  get; set; }
 
         // İlişkiler
         public int AppUserId { get; set; }

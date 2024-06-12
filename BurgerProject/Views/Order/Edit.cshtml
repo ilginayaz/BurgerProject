@@ -1,0 +1,40 @@
+﻿@model OrderListViewModel
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="container py-lg-5 py-md-3">
+            <div>
+                <form asp-action="Edit">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="MenuName"></label>
+                            <input asp-for="MenuName" class="form-control" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderSize"></label>
+                        <select asp-for="OrderSize" class="form-control">
+                            <option value="0">Kucuk</option>
+                            <option value="1">Orta</option>
+                            <option value="2">Buyuk</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Piece"></label>
+                        <select class="form-control" name="piece">
+                            <option value="">Adet Seçin</option>
+                            @for (int i = 1; i <= 10; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </div>
+                    <!-- Diğer gerekli alanlar -->
+                    <div class="form-group">
+                        <input type="submit" value="Kaydet" class="btn btn-primary" />
+                    </div>
+                </form>
+        </div>
+    </div>
+</section>
+
