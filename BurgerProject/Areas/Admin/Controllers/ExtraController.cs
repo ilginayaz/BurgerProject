@@ -10,7 +10,7 @@ using BurgerProject.Areas.Admin.Models;
 namespace BurgerProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class ExtraController : Controller
     {
         private readonly BurgerDbContext _burgerDbContext;
