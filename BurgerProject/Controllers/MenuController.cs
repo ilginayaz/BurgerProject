@@ -3,6 +3,7 @@ using BurgerProject.Data.Context;
 using BurgerProject.Data.Entities.Concrete;
 using BurgerProject.Data.Enums;
 using BurgerProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -11,42 +12,46 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BurgerProject.Controllers
 {
-	public class MenuController : Controller
-	{
+    
+    public class MenuController : Controller
+    {
 
-		private readonly BurgerDbContext _context;
-		private UserManager<AppUser> _userManager;
+        private readonly BurgerDbContext _context;
+        private UserManager<AppUser> _userManager;
 
-		public MenuController(BurgerDbContext context, UserManager<AppUser> userManager)
-		{
-			_context = context;
-			_userManager = userManager;
-		}
+        public MenuController(BurgerDbContext context, UserManager<AppUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
 
-		public IActionResult Index()
-		{
-			var menuItems = _context.Menus.ToList();
-			var extraItems = _context.Extras.ToList();
-			var viewModel = new MenuViewModel
-			{
-				Menus = menuItems,
-				Extras = extraItems
-			};
-			return View(viewModel);
-		}
+        public IActionResult Index()
+        {
+            var menuItems = _context.Menus.ToList();
+            var extraItems = _context.Extras.ToList();
+            var viewModel = new MenuViewModel
+            {
+                Menus = menuItems,
+                Extras = extraItems
+            };
+            return View(viewModel);
+        }
 
 
-       
+
 
         [HttpPost]
         public IActionResult CreateOrder(OrderViewModel orderViewModel, List<int> selectedExtras)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                ViewBag.Error = "Sipariş vermek için giriş yapmalısınız.";
+                return RedirectToAction("Index"); 
+            }
             var userId = Convert.ToInt32(_userManager.GetUserId(HttpContext.User)); //sisteme login olanın id'sini verir.
 
-        //    var userOrders = _context.Orders
-        //.Include(o => o.Extras) // Ekstraları da al
-        //.Where(o => o.AppUserId == userId)
-        //.ToList();
+        
+
 
             if (ModelState.IsValid)
             {
@@ -79,11 +84,17 @@ namespace BurgerProject.Controllers
                 _context.Orders.Add(order);
                 _context.SaveChanges();
 
+                
+            }
+
+            else if (!ModelState.IsValid) 
+            {
+                TempData["Message"] = "Sipariş vermek için gerekli yerleri doldurmalısınız.";
                 return RedirectToAction("Index");
             }
 
-            // Model geçersizse, aynı sayfayı tekrar göster
-            return View();
+            return RedirectToAction("Index");
+
         }
 
 
@@ -97,3 +108,7 @@ namespace BurgerProject.Controllers
 
     }
 }
+
+
+
+

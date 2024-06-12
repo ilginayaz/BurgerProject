@@ -1,46 +1,95 @@
 ﻿
-
-
-
 @model BurgerProject.Models.MenuViewModel
 
 @{
     ViewData["Title"] = "Menü";
     string defaultImage = "default.jpg"; // Varsayılan fotoğrafın yolu
+    bool isUserLoggedIn = User.Identity.IsAuthenticated;
 }
 
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
+  
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="//fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;800&display=swap" rel="stylesheet">
-
     <style>
+        .menu-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
         .menu-item {
-            justify-content: flex-start; /* Kutucukları sola hizala */
+            flex: 0 1 calc(33.333% - 20px); /* 3 kolon */
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.15s;
+        }
+
+            .menu-item:hover {
+                transform: scale(1.05);
+            }
+
+       
+            .menu-item img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                object-position: center;
+            }
+
+        .btn-order, .form-control {
+            width: calc(100% - 20px);
+            margin: 10px;
+            text-size: 40px;
+        }
+
+        .menu-item-name, .extra-items-title {
+            text-align: left;
+            padding-left: 10px;
         }
 
         .extra-checkbox {
             display: flex;
-            flex-direction: column; /* Fiyatları alt alta hizala */
-            align-items: flex-end; /* Fiyatları sağa hizala */
-            width: 100%; /* Tam genişlik */
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+            padding: 0 10px;
         }
 
-        .menu-item img {
-            width: 100%; /* Tam genişlik */
-            height: auto; /* Orantılı yükseklik */
-            border-radius: 10px 10px 0 0; /* Üst kenarları oval */
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Gölge efekti */
+            .extra-checkbox label {
+                flex: 1;
+                text-align: left;
+                padding-right: 10px;
+            }
+
+            .extra-checkbox span {
+                text-align: right;
+            }
+
+        .form-check-input {
+            display: none;
         }
 
-        .btn-order {
-            width: 100%; /* Butonu tam genişlik yap */
-        }
+            .form-check-input + label:before {
+                content: '';
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+                border: 1px solid #ddd;
+                vertical-align: middle;
+                cursor: pointer;
+            }
 
-        /* ... Diğer stiller ... */
+            .form-check-input:checked + label:before {
+                background-color: #FFA62F;
+            }
     </style>
 </head>
 <body>
@@ -57,62 +106,69 @@
         <!-- menu block -->
         <div id="w3l-menublock" class="text-center py-lg-4 py-md-3">
             <div class="container">
-                <div class="row menu-body">
-                    <!-- Menü öğeleri için döngü -->
+                @if (!isUserLoggedIn)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <h5>Sipariş vermek için önce giriş yapmalısınız.</h5>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+
+
+                @if (TempData["Message"] is not null)
+                {
+                    <div class="alert alert-success"><h5>@TempData["Message"]</h5></div>
+                }
+                <div class="row menu-body menu-section">
+
                     @foreach (var item in Model.Menus)
                     {
-                        <div class="col-lg-6 menu-section pr-lg-5">
-                            <div class="menu-item">
-                                <div>
-                                    <!-- Menü resmi -->
-                                    <img src="~/images/@(string.IsNullOrEmpty(item.ImageName) ? defaultImage : item.ImageName)" alt="@item.MenuName" />
-                                    <!-- Menü adı ve fiyatı -->
-                                    <div class="row border-dot no-gutters">
-                                        <div class="col-8 menu-item-name" style="text-align:left; margin-top:20px;">
-                                            <h6>@item.MenuName</h6>
-                                        </div>
-                                        <div class="col-4 menu-item-price text-right" style="margin-top:20px;">
-                                            <h6 style="float:right;">@item.MenuPrice.ToString() TL</h6>
-                                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <img src="~/images/@(string.IsNullOrEmpty(item.ImageName) ? defaultImage : item.ImageName)" alt="@item.MenuName" />
+                                <div class="row border-dot no-gutters">
+                                    <div class="col-8 menu-item-name">
+                                        <h6>@item.MenuName</h6>
                                     </div>
-                                    <!-- Sipariş formu -->
-                                    <form asp-controller="Menu" asp-action="CreateOrder" method="post" class="mt-2">
-                                        <input type="hidden" name="menuId" value="@item.Id" />
-                                        <!-- Boyut seçimi -->
-                                        <select class="form-control" name="OrderSize">
-                                            <h6>Boyut Seçin</h6>
-                                            @foreach (var size in Enum.GetValues(typeof(BurgerProject.Data.Enums.OrderSize)))
-                                            {
-                                                <option value="@((int)size)">@size</option>
-                                            }
-                                        </select>
-                                        <!-- Ekstra malzemeler -->
-                                        <div>
-                                            <h6>Ekstra Malzemeler:</h6>
-                                            @foreach (var extra in Model.Extras)
-                                            {
-                                                <div class="form-check extra-checkbox">
-                                                    <input class="input" type="checkbox" name="selectedExtras" value="@extra.Id" id="extra-@item.Id-@extra.Id">
-                                                    <label class="form-check-label" for="extra-@item.Id-@extra.Id">
-                                                        @extra.ExtraName (@extra.ExtraPrice.ToString() TL)
-                                                    </label>
-                                                </div>
-                                            }
-                                        </div>
-                                        <!-- Adet seçimi -->
-                                        <select class="form-control" name="piece">
-                                            <option value="">Adet Seçin</option>
-                                            @for (int i = 1; i <= 50; i++)
-                                            {
-                                                <option value="@i">@i</option>
-                                            }
-                                        </select>
-                                        <!-- Sipariş butonu -->
-                                        <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary btn-style mt-3 btn-order">Sipariş Oluştur</button>
-                                        </div>
-                                    </form>
+                                    <div class="col-4 menu-item-price text-right">
+                                        <h6>@item.MenuPrice.ToString() TL</h6>
+                                    </div>
                                 </div>
+                                <form asp-controller="Menu" asp-action="CreateOrder" method="post" class="mt-2">
+                                    <input type="hidden" name="menuId" value="@item.Id" />
+                                    <select class="form-control" name="OrderSize">
+                                        <option value="">Boyut Seçin</option>
+                                        @foreach (var size in Enum.GetValues(typeof(BurgerProject.Data.Enums.OrderSize)))
+                                        {
+                                            <option value="@((int)size)">@size</option>
+                                        }
+                                    </select>
+                                    <div class="extra-items-title">
+                                        <h6>Ekstra Malzemeler:</h6>
+                                    </div>
+                                    @foreach (var extra in Model.Extras)
+                                    {
+                                        <div class="form-check extra-checkbox">
+                                            <input class="form-check-input" type="checkbox" name="selectedExtras" value="@extra.Id" id="extra-@item.Id-@extra.Id">
+                                            <label class="form-check-label" for="extra-@item.Id-@extra.Id">
+                                                @extra.ExtraName
+                                            </label>
+                                            <span>@extra.ExtraPrice.ToString() TL</span>
+                                        </div>
+                                    }
+                                    <select class="form-control" name="piece">
+                                        <option value="">Adet Seçin</option>
+                                        @for (int i = 1; i <= 10; i++)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary btn-style mt-3 btn-order" @(string.IsNullOrEmpty(ViewBag.Error) ? "" : "disabled")>Sipariş Oluştur</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     }
@@ -121,6 +177,9 @@
         </div>
         <!-- menu block -->
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
