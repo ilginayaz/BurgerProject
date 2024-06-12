@@ -7,7 +7,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+@* <h1>Edit</h1>
 
 <h4>Menü</h4>
 <hr />
@@ -39,4 +39,47 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
+</div> *@
+
+
+
+
+
+
+<h3>Menu Edit</h3>
+<hr />
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="MenuName" class="control-label"></label>
+                    <input asp-for="MenuName" class="form-control" />
+                    <span asp-validation-for="MenuName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MenuPrice" class="control-label"></label>
+                    <input asp-for="MenuPrice" class="form-control" />
+                    <span asp-validation-for="MenuPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Logo File</label>
+                    <input type="file" name="ImageName" id="LogoFile" class="form-control-file" accept="image/png" />
+                    <span asp-validation-for="ImageName" class="text-danger"></span>
+                </div>
+            </form>
+        </div>
+       
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>
+
+
+
+

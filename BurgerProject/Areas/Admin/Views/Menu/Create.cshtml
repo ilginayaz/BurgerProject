@@ -1,14 +1,13 @@
-﻿@using BurgerProject.Areas.Admin.Models
-@model MenuViewModel 
+﻿@model BurgerProject.Areas.Admin.Models.MenuViewModel
+
 
 @{
     ViewData["Title"] = "Create";
 }
 
 <div class="container mt-4">
-    <h1>Create</h1>
-    <h4>Menü</h4>
-    <hr />
+
+    <h2>Menu Create</h2>
     <div class="row">
         <div class="col-md-4">
             <form asp-action="Create" asp-controller="Menu" enctype="multipart/form-data">
