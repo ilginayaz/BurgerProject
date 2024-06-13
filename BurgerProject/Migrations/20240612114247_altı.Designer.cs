@@ -4,6 +4,7 @@ using BurgerProject.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BurgerProject.Migrations
 {
     [DbContext(typeof(BurgerDbContext))]
-    partial class BurgerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240612114247_altı")]
+    partial class altı
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,16 +108,14 @@ namespace BurgerProject.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1acd62c6-8318-415c-8d83-ffa75877b27c",
-
+                            ConcurrencyStamp = "370dcb3b-372e-4f9b-9aa4-f71aec766fa7",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Admin",
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAENGBMSdkABz4K6FFlCW2AdpWkS9ovlLq+wm9cfLGJykL5IqSTY/hzubyE0pvc9HGrA==",
-
+                            PasswordHash = "AQAAAAIAAYagAAAAEBbo4FZrDgSRh2K7/ASQqqMXruJqGE1Pt3FW+URGrAXDC+lUBFMDEycSTePZEDAXWg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "3706511C-7374-4B05-BD82-E5708D7F6B9A",
                             Surname = "Admin",
@@ -151,6 +152,8 @@ namespace BurgerProject.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Extras");
                 });
@@ -220,21 +223,6 @@ namespace BurgerProject.Migrations
                     b.HasIndex("MenuId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("ExtraOrder", b =>
-                {
-                    b.Property<int>("ExtrasId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ExtrasId", "OrderId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("ExtraOrder");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -391,6 +379,15 @@ namespace BurgerProject.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("BurgerProject.Data.Entities.Concrete.Extra", b =>
+                {
+                    b.HasOne("BurgerProject.Data.Entities.Concrete.Order", "Order")
+                        .WithMany("Extras")
+                        .HasForeignKey("OrderId");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("BurgerProject.Data.Entities.Concrete.Order", b =>
                 {
                     b.HasOne("BurgerProject.Data.Entities.Concrete.AppUser", "AppUser")
@@ -408,21 +405,6 @@ namespace BurgerProject.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Menu");
-                });
-
-            modelBuilder.Entity("ExtraOrder", b =>
-                {
-                    b.HasOne("BurgerProject.Data.Entities.Concrete.Extra", null)
-                        .WithMany()
-                        .HasForeignKey("ExtrasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BurgerProject.Data.Entities.Concrete.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -484,6 +466,11 @@ namespace BurgerProject.Migrations
             modelBuilder.Entity("BurgerProject.Data.Entities.Concrete.Menu", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("BurgerProject.Data.Entities.Concrete.Order", b =>
+                {
+                    b.Navigation("Extras");
                 });
 #pragma warning restore 612, 618
         }

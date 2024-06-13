@@ -4,6 +4,7 @@ using BurgerProject.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BurgerProject.Migrations
 {
     [DbContext(typeof(BurgerDbContext))]
-    partial class BurgerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240612193012_yedi")]
+    partial class yedi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,7 +109,6 @@ namespace BurgerProject.Migrations
                             Id = 1,
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "1acd62c6-8318-415c-8d83-ffa75877b27c",
-
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -114,7 +116,6 @@ namespace BurgerProject.Migrations
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
                             PasswordHash = "AQAAAAIAAYagAAAAENGBMSdkABz4K6FFlCW2AdpWkS9ovlLq+wm9cfLGJykL5IqSTY/hzubyE0pvc9HGrA==",
-
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "3706511C-7374-4B05-BD82-E5708D7F6B9A",
                             Surname = "Admin",
