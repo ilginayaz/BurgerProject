@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BurgerProject.Data.Entities.Concrete.Order>
+@{
+    ViewData["Title"] = "Index";
+}
+<section>
+    <h1>Customer Index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AppUserId)
+                </th>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                <th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdatedDate)
+                <th>
+                    @Html.DisplayNameFor(model => model.Extras)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Menu)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderSize)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AppUserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AppUser)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Extras)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Menu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderSize)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Piece)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</section>

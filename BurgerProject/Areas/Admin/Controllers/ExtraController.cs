@@ -232,10 +232,6 @@ namespace BurgerProject.Areas.Admin.Controllers
             }
            
         }
-        private bool HotelExists(int id)
-        {
-            return _burgerDbContext.Extras.Any(e => e.Id == id);
-        }
 
 
 
