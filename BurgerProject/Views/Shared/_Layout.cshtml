@@ -1,4 +1,7 @@
-﻿
+﻿@using BurgerProject.Data.Entities.Concrete
+@using Microsoft.AspNetCore.Identity
+@inject IHttpContextAccessor _httpContextAccessor
+@inject UserManager<AppUser> _userManager
 <!doctype html>
 <html lang="en">
 <head>
@@ -55,9 +58,13 @@
 
                         @if (User.Identity.IsAuthenticated)
                         {
+                            var userId = _userManager.GetUserId(_httpContextAccessor.HttpContext.User);
+
+                            var user = await _userManager.FindByIdAsync(userId);
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Hoşgeldin  " @User.Identity.Name "   <i class="bi bi-chevron-double-down" ></i>
+                                    Hoşgeldin  " @user.Name "   <i class="bi bi-chevron-double-down" ></i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" asp-controller="Order" asp-action="Index">Siparişlerim</a>

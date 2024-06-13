@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using NuGet.Versioning;
+using System.Threading.Tasks;
 
 namespace BurgerProject.Controllers
 {
@@ -152,8 +154,9 @@ namespace BurgerProject.Controllers
         [Authorize] 
         public async Task<IActionResult> Edit()
         {
-           
-            var user = await _userManager.GetUserAsync(User);
+			var userId = _userManager.GetUserId(HttpContext.User);
+
+			var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
                 return NotFound();
@@ -174,8 +177,12 @@ namespace BurgerProject.Controllers
 
         [HttpPost]
         [Authorize] 
-        public async Task<IActionResult> Edit(UserViewModel model)
+        public async Task<IActionResult> Edit(UserViewModel model, string currentPassword, string newPassword, string confirmNewPassword)
         {
+			ModelState.Remove("Password");
+			ModelState.Remove("ConfirmPassword");
+
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -187,7 +194,24 @@ namespace BurgerProject.Controllers
             {
                 return NotFound();
             }
+            if (!string.IsNullOrEmpty(currentPassword) && !string.IsNullOrEmpty(newPassword) && !string.IsNullOrEmpty(confirmNewPassword))
+            {
+                if (newPassword != confirmNewPassword)
+                {
+                    ViewBag.ErrorMessage = "Yeni şifre ile şifre tekrarı aynı değil.";
+                    return View(model);
+                }
 
+                var passwordChangeResult = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+                if (!passwordChangeResult.Succeeded)
+                {
+                    foreach (var error in passwordChangeResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View(model);
+                }
+            }
             user.Name = model.Name;
             user.Surname = model.Surname;
             user.Address = model.Address;
