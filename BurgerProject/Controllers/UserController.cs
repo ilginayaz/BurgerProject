@@ -1,8 +1,10 @@
 ﻿using BurgerProject.Data.Entities.Concrete;
 using BurgerProject.Models.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 
 namespace BurgerProject.Controllers
@@ -146,8 +148,68 @@ namespace BurgerProject.Controllers
 
 
 
+        [HttpGet]
+        [Authorize] 
+        public async Task<IActionResult> Edit()
+        {
+           
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            
+            var model = new UserViewModel
+            {
+                UserId = user.Id,
+                Name = user.Name,
+                Surname = user.Surname,
+                Address = user.Address,
+                Email = user.Email
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize] 
+        public async Task<IActionResult> Edit(UserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
 
+            var user = await _userManager.FindByIdAsync(model.UserId.ToString());
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-	}
+            user.Name = model.Name;
+            user.Surname = model.Surname;
+            user.Address = model.Address;
+            user.Email = model.Email;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+
+                await _signInManager.RefreshSignInAsync(user);
+                TempData["SuccessMessage"] = "Kullanıcı bilgileriniz başarıyla güncellendi.";
+                return RedirectToAction(nameof(Edit));
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
+
+
+    }
 }

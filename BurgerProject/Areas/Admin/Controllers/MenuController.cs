@@ -100,7 +100,10 @@ namespace BurgerProject.Areas.Admin.Controllers
         public IActionResult Edit(MenuViewModel model, int id)
         {
             var oldMenu = _dbContext.Menus.FirstOrDefault(m => m.Id == id);
-
+            if (oldMenu == null)
+            {
+                return NotFound();
+            }
             if (ModelState.IsValid)
             {
                 if (model.ImageFile is null)
@@ -128,8 +131,9 @@ namespace BurgerProject.Areas.Admin.Controllers
                 _dbContext.Update(oldMenu);
                 _dbContext.SaveChanges();
 
+                return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction(nameof(Index));
+            return View(model);
         }
 
 
