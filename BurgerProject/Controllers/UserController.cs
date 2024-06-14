@@ -151,7 +151,7 @@ namespace BurgerProject.Controllers
 
 
         [HttpGet]
-        [Authorize] 
+        [Authorize(Roles = "Customer")]
         public async Task<IActionResult> Edit()
         {
 			var userId = _userManager.GetUserId(HttpContext.User);
@@ -176,11 +176,15 @@ namespace BurgerProject.Controllers
         }
 
         [HttpPost]
-        [Authorize] 
+        [Authorize(Roles = "Customer")]
         public async Task<IActionResult> Edit(UserViewModel model, string currentPassword, string newPassword, string confirmNewPassword)
         {
 			ModelState.Remove("Password");
 			ModelState.Remove("ConfirmPassword");
+
+			ModelState.Remove("newPassword");
+			ModelState.Remove("currentPassword");
+			ModelState.Remove("confirmNewPassword");
 
 
             if (!ModelState.IsValid)
@@ -223,7 +227,7 @@ namespace BurgerProject.Controllers
 
                 await _signInManager.RefreshSignInAsync(user);
                 TempData["SuccessMessage"] = "Kullanıcı bilgileriniz başarıyla güncellendi.";
-                return RedirectToAction(nameof(Edit));
+                return RedirectToAction("Index", "Home");
             }
 
             foreach (var error in result.Errors)

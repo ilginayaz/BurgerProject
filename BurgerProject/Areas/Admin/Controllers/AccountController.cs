@@ -31,8 +31,8 @@ namespace BurgerProject.Areas.Admin.Controllers
 			if (user == null)
 			{
 
-				ModelState.AddModelError(string.Empty, "E-mail adresi geçersizdir");
-				return View(model);
+                TempData["Message"] = "E-mail adresi geçersizdir.";
+                return View(model);
 			}
 
 
@@ -43,8 +43,8 @@ namespace BurgerProject.Areas.Admin.Controllers
 
 
 
-			ModelState.AddModelError(string.Empty, "Kullanıcı adı veya şifre yanlış");
-			return View(model);
+            TempData["Message"] = "Şifre yanlıştır.";
+            return View(model);
 		}
 
 

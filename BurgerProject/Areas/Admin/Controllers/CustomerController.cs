@@ -45,6 +45,12 @@ namespace BurgerProject.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            if (id==1)
+            {
+                TempData["Message"] = "Admin Kullanıcısı Silinemez!";
+                return RedirectToAction(nameof(Index));
+            }
+
             var extra = await _burgerDbContext.Users
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (extra == null)

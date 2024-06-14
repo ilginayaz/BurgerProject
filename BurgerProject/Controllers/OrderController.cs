@@ -61,8 +61,10 @@ namespace BurgerProject.Controllers
             
             {
                 _context.Orders.Remove(order);
+                _context.SaveChanges();
+
             }
-            _context.SaveChangesAsync();
+            
 
             return RedirectToAction(nameof(Index)); 
         }
@@ -115,7 +117,7 @@ namespace BurgerProject.Controllers
 
                 order.OrderSize = model.OrderSize;
                 order.Piece = model.Piece;
-                // Diğer gerekli alanları güncelleyin
+                
 
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

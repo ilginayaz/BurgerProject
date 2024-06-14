@@ -4,7 +4,10 @@
 }
 <section>
     <h1>Customer Index</h1>
-
+    @if (TempData["Message"] is not null)
+    {
+        <div class="alert alert-success"><h5>@TempData["Message"]</h5></div>
+    }
     <table class="table">
         <thead>
             <tr>
@@ -23,12 +26,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.UserName)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Orders)
-                </th>
+               
+               
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -51,9 +51,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                    </td>
+                   
                     <td>|
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>

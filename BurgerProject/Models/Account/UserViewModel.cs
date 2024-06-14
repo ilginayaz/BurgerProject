@@ -7,23 +7,23 @@ namespace BurgerProject.Models.Account
     {
 
         public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
 		public string? Address { get; set; }
 
 		[EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
 
 
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
 
 
         [DataType(DataType.Password)]
         //[Compare("Password", ErrorMessage = "Şifre ile şifre tekrarı aynı değildir.")]
-        public string ConfirmPassword { get; set; }
+        public string? ConfirmPassword { get; set; }
 
 
 

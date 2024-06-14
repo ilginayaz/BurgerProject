@@ -108,7 +108,7 @@ namespace BurgerProject.Areas.Admin.Controllers
             {
                 if (model.ImageFile is null)
                 {
-                    model.ImageName = Request.Form["ExistingImageName"];
+                    model.ImageName = oldMenu.ImageName;
                 }
                 else
                 {
