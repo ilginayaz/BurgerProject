@@ -93,6 +93,7 @@ namespace BurgerProject.Controllers
                 return RedirectToAction("Index");
             }
 
+            TempData["Message"] = "Siparişiniz başarıyla oluşturulmuştur, siparişlerim bölümünden kontrol edebilirsiniz.";
             return RedirectToAction("Index");
 
         }
