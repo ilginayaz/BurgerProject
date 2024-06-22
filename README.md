@@ -3,11 +3,15 @@
 Kullanılan Teknolojiler
 Geliştirme Ortamı: Ms Visual Studio 2022
 Kod Altyapısı: C# - .NET CORE 8.0 , HTML-CSS-JavaScript
+
 Veri Tabanı: Ms SQL Server
 Veri Erişim Teknolojisi: Entity Framework CORE (CodeFirst)
+
 Veri Tabanı Sorguları: LINQ
 File Upload: IFormFile
+
 Kullanıcı kimlik doğrulama - Authentication & Authorization: ASP.NET Core Identity
+
 Tema Giydirme İşlemleri: Hazır template ve Bootstrap5 kütüphanesi
 
 Projeyi Başlatma
@@ -32,9 +36,17 @@ Ayrıca layoutta bulunan Hoşgeldin"kullanıcı" nın üzerine dokunarak kullan�
 
 Keyifli incelemeler.
 
-https://github.com/BurakGonca/BurgerProject/assets/154968593/bb38e509-4bf1-4a5c-bf25-505edcefc3b2
-https://github.com/BurakGonca/BurgerProject/assets/154968593/cd64498d-303f-452b-be2f-f3178522fca7
 
+[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/fCi3T1hsiZk)
+[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/hkp9JSoQ3_0)
+
+
+
+## Contributors
+
+- [@BurakGonca](https://github.com/BurakGonca)
+- [@benguurgen](https://github.com/benguurgen)
+- [@ilginayaz](https://github.com/ilginayaz)
 
 
 
