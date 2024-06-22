@@ -37,7 +37,11 @@ Ayrıca layoutta bulunan Hoşgeldin"kullanıcı" nın üzerine dokunarak kullan�
 Keyifli incelemeler.
 
 
+
+Ön yüz için video;
 [![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/fCi3T1hsiZk)
+
+Admin  için video;
 [![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/hkp9JSoQ3_0)
 
 
