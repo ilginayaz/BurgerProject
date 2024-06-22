@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BurgerProject.Data.Entities.Concrete.Menu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<section>
+    <h1>Burger Menüleri</h1>
+    <p>
+
+        <a class="btn btn-primary" asp-action="Create" asp-controller="Menu" asp-area="Admin">Yeni Menü</a>
+
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuPrice)
+                    </td>
+                    <td>
+                        <img width="30px;" height="%100" src="~/images/@item.ImageName" alt="Resim Yok" />
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detay</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    
+
+</section>

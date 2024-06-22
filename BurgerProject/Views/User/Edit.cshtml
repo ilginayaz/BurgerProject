@@ -1,0 +1,61 @@
+﻿@model BurgerProject.Models.Account.UserViewModel
+
+@{
+    ViewData["Title"] = "Profil Güncelleme";
+}
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="container py-lg-5 py-md-3">
+            <h2 class="title"> @User.Identity.Name <hr /> Bilgilerini buradan güncelleyebilirsin</h2>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="w3l-contact-7 py-5" id="contact">
+    <div class="contacts-9 py-lg-5 py-md-4">
+        <div class="container">
+            <div class="top-map">
+                <div class="row map-content-9">
+                    <div class="col-lg-8">
+
+                        <p class="mb-4 mt-lg-0 mt-2" style="text-align:center">Lütfen değiştirmek istediğiniz alanları düzenleyiniz</p>
+                        @if (ViewBag.ErrorMessage is not null)
+                        {
+                            <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                        }
+
+
+
+                        <form asp-controller="User" asp-action="Edit" role="form" method="post">
+                            <div class="form-grid">
+                                <input type="hidden" asp-for="UserId" />
+                                <input name="name" class="form-control" type="text"  value="@Model.Name" >
+                                <input name="surname" class="form-control" type="text" id="w3lSender" value="@Model.Surname">
+                                <input name="email" type="email" id="w3lSender" value="@Model.Email" >
+                                <input name="address" type="text" id="w3lSender" value="@Model.Address">
+                                <input name="currentPassword" type="password" id="w3lSender" placeholder="Mevcut Şifre*" >
+                                <input name="newPassword" type="password" id="w3lSender" placeholder="Yeni Şifre*" >
+                                <input name="confirmNewPassword" type="password" id="w3lSender" placeholder="Yeni Şifre Tekrarı*" >
+
+                                <div style="width: 100%;">
+                                    <button type="submit" class="btn btn-primary btn-style mt-3" style="width: 100%;"> Güncelle </button>
+                                </div>
+                            </div>
+                        </form> 
+
+                       
+
+                        
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

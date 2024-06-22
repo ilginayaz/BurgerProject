@@ -1,0 +1,67 @@
+﻿@model List<OrderListViewModel>
+
+@{
+	ViewData["Title"] = "Siparişleriniz";
+}
+
+
+<section class="w3l-about-breadcrumb">
+	<div class="breadcrumb-bg breadcrumb-bg-about py-5">
+		<div class="container py-lg-5 py-md-3">
+			<h2 class="title"> Hoşgeldin @User.Identity.Name <hr /> Buradan Geçmiş Tüm Siparişlerini Bulabilirsin</h2>
+
+		</div>
+	</div>
+</section>
+
+
+<table class="table  table-hover">
+	<thead>
+		<tr>
+			<th>Sipariş No</th>
+			<th>Menü Fotoğrafı</th>
+			<th>Menü Adı</th>
+			<th>Boyutu</th>
+			<th>Adeti</th>
+			<th>Ekstra Ürünler</th>
+			<th>Toplam Fiyatı</th>
+			<th>İşlem</th>
+		</tr>
+	</thead>
+	<tbody>
+		@{
+			int rowNumber = 1;
+		}
+		@foreach (var order in Model)
+		{
+			<tr>
+				<td><p>@rowNumber</p></td>
+				<td><img src="~/images/@order.Menu.ImageName" alt="Resim Yok" style="height:40px; width:60px;" /></td>
+				<td>@order.MenuName</td>
+				<td>@order.OrderSize.ToString()</td>
+				<td>@order.Piece Adet</td>
+				<td>
+					@if (order.Extras != null && order.Extras.Any())
+					{
+						<ul>
+							@foreach (var extra in order.Extras)
+							{
+								<li>@extra.ExtraName (@extra.ExtraPrice TL) </li>
+							}
+						</ul>
+					}
+					else
+					{
+						<span>Ekstra Ürün Bulunmuyor</span>
+					}
+				</td>
+				<td>@order.TotalPrice TL</td>
+				<td>
+					<a asp-controller="Order" asp-action="Edit" asp-route-id="@order.Id" class="btn btn-warning">Düzenle</a>
+					<a asp-controller="Order" asp-action="Delete" asp-route-id="@order.Id" class="btn btn-danger" onclick="return confirm('Silmek istediğinize emin misiniz?');">Sil</a>
+				</td>
+			</tr>
+			rowNumber++;
+		}
+	</tbody>
+</table>

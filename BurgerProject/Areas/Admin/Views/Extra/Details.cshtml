@@ -1,0 +1,50 @@
+﻿@model BurgerProject.Data.Entities.Concrete.Extra
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <h3>Extras Details</h3>
+    <hr />
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+               
+               
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ExtraName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.ExtraName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ExtraPrice)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.ExtraPrice)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.LogoFile)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.LogoFile)
+                    </dd>
+                
+            </div>
+            <div class="col-lg-5 d-flex justify-content-center align-items-center">
+                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+    <p>
+
+        <a class="btn btn-primary" asp-action="Create" asp-controller="Menu" asp-area="Admin">Create New</a>
+
+    </p>
+
+</body>
+</html>

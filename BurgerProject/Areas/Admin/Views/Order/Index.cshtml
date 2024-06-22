@@ -1,0 +1,68 @@
+﻿@model IEnumerable<BurgerProject.Data.Entities.Concrete.Order>
+@{
+    ViewData["Title"] = "Index";
+}
+<section>
+    <h1>Siparişler</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AppUserId)
+                </th>
+              
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+
+             
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuId)
+                </th>
+              
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderSize)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Piece)
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AppUserId)
+                    </td>
+                 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuId)
+                    </td>
+                   
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderSize)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Piece)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</section>

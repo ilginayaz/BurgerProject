@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BurgerProject.Data.Entities.Concrete.Extra>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<section>
+    <h1>Extra Malzemeler</h1>
+
+    <p>
+
+        <a class="btn btn-primary" asp-action="Create" asp-controller="Extra" asp-area="Admin">Yeni Extra</a>
+
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExtraName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExtraPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LogoFile)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExtraName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExtraPrice)
+                    </td>
+                    <td>
+                        <img width="30px;" height="%100" src="~/images/@item.LogoFile" alt="Resim Yok" />
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detay</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+
+</section>
