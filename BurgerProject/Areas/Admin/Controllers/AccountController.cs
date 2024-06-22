@@ -51,8 +51,8 @@ namespace BurgerProject.Areas.Admin.Controllers
 		public async Task<IActionResult> Logout()
 		{
 			await _signInManager.SignOutAsync();
-			return RedirectToAction("Index", "Home");
-		}
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
 	}
 }
 

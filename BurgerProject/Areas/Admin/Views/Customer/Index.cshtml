@@ -3,7 +3,7 @@
     ViewData["Title"] = "Index";
 }
 <section>
-    <h1>Customer Index</h1>
+    <h1>Müşteriler</h1>
     @if (TempData["Message"] is not null)
     {
         <div class="alert alert-success"><h5>@TempData["Message"]</h5></div>
@@ -53,8 +53,8 @@
                     </td>
                    
                     <td>|
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Detay</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
                     </td>
                 </tr>
             }
