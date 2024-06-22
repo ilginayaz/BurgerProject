@@ -39,10 +39,11 @@ Keyifli incelemeler.
 
 
 Ön yüz için video;
-[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/fCi3T1hsiZk)
+[![Watch the video](https://img.youtube.com/vi/fCi3T1hsiZk/maxresdefault.jpg)](https://youtu.be/fCi3T1hsiZk)
 
-Admin  için video;
-[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/hkp9JSoQ3_0)
+Admin için video;
+[![Watch the video](https://img.youtube.com/vi/hkp9JSoQ3_0/maxresdefault.jpg)](https://youtu.be/hkp9JSoQ3_0)
+
 
 
 
