@@ -53,6 +53,7 @@ namespace BurgerProject.Controllers
                 return View(model);
             }
 
+           
 
             var users = _userManager.Users.ToList();
 
@@ -65,7 +66,8 @@ namespace BurgerProject.Controllers
 				}
 			}
 
-			var hasher = new PasswordHasher<AppUser>();
+
+            var hasher = new PasswordHasher<AppUser>();
 
 			AppUser user = new AppUser
 			{
@@ -79,6 +81,8 @@ namespace BurgerProject.Controllers
 				UserName = model.Name,
 				NormalizedUserName = model.Name.ToUpper()
 			};
+
+
 
 			IdentityResult result = await _userManager.CreateAsync(user);
 
@@ -192,27 +196,25 @@ namespace BurgerProject.Controllers
                 return View(model);
             }
 
-
+            
             var user = await _userManager.FindByIdAsync(model.UserId.ToString());
             if (user == null)
             {
-                return NotFound();
+               return View(model);
             }
+
             if (!string.IsNullOrEmpty(currentPassword) && !string.IsNullOrEmpty(newPassword) && !string.IsNullOrEmpty(confirmNewPassword))
             {
                 if (newPassword != confirmNewPassword)
                 {
-                    ViewBag.ErrorMessage = "Yeni şifre ile şifre tekrarı aynı değil.";
+                    ViewBag.ErrorMessage = "Yeni şifre ile yeni şifre tekrarı aynı değil.";
                     return View(model);
                 }
 
                 var passwordChangeResult = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
                 if (!passwordChangeResult.Succeeded)
                 {
-                    foreach (var error in passwordChangeResult.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
+                    ViewBag.ErrorMessage = "Şifrenizde en az 1 büyük harf, en az 1 küçük harf ve en az 1 özel karakter olmalıdır";
                     return View(model);
                 }
             }

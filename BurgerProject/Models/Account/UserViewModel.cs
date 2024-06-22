@@ -7,11 +7,16 @@ namespace BurgerProject.Models.Account
     {
 
         public int UserId { get; set; }
+
+        [Display(Name ="Ad")]
         public string? Name { get; set; }
+        [Display(Name = "Soyad")]
         public string? Surname { get; set; }
-		public string? Address { get; set; }
+        [Display(Name = "Adres")]
+        public string? Address { get; set; }
 
 		[EmailAddress]
+        [Display(Name = "E-mail")]
         public string? Email { get; set; }
 
 

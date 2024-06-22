@@ -6,6 +6,7 @@ using BurgerProject.Data.Entities;
 using BurgerProject.Data;
 using BurgerProject.Data.Entities.Concrete;
 using BurgerProject.Areas.Admin.Models;
+using BurgerProject.Migrations;
 
 namespace BurgerProject.Areas.Admin.Controllers
 {
@@ -49,7 +50,7 @@ namespace BurgerProject.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Create(ExtraViewModel extraViewModel, Extra extra)
         {
             if (extraViewModel.LogoFile != null)
@@ -78,7 +79,7 @@ namespace BurgerProject.Areas.Admin.Controllers
                 {
                     foreach (var error in modelState.Errors)
                     {
-                        Console.WriteLine(error.ErrorMessage); // Hataları konsola yazdır
+                        Console.WriteLine(error.ErrorMessage); 
                     }
                 }
                 return View(extraViewModel);
@@ -111,7 +112,7 @@ namespace BurgerProject.Areas.Admin.Controllers
             return View(extraViewModel);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+    
         public async Task<IActionResult> Edit(int id, ExtraViewModel extraViewModel)
         {
             var oldExtra = await _burgerDbContext.Extras.FindAsync(id);
@@ -152,19 +153,26 @@ namespace BurgerProject.Areas.Admin.Controllers
                         oldExtra.ExtraPrice = extraViewModel.ExtraPrice;
                     }
 
+                   
+
                     if (extraViewModel.LogoFile != null)
                     {
-                        var extent = Path.GetExtension(extraViewModel.LogoFile.FileName);
-                        var dumyName = Guid.NewGuid().ToString();
-                        dumyName += extent;
-                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", dumyName);
+                        var extension = Path.GetExtension(extraViewModel.LogoFile.FileName);
+                        var dummyName = Guid.NewGuid().ToString() + extension;
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", dummyName);
                         using (var stream = new FileStream(path, FileMode.Create))
                         {
                             await extraViewModel.LogoFile.CopyToAsync(stream);
                         }
-                        oldExtra.LogoFile = "wwwroot/images" + dumyName;
-
+                        oldExtra.LogoFile = dummyName; // Sadece dosya adını sakla
                     }
+                    else
+                    {
+                        oldExtra.LogoFile = oldExtra.LogoFile;
+                    }
+
+
+
                     oldExtra.UpdatedDate = DateTime.Now;
                     _burgerDbContext.Update(oldExtra);
                     await _burgerDbContext.SaveChangesAsync();
@@ -204,7 +212,7 @@ namespace BurgerProject.Areas.Admin.Controllers
             return View(extra);
         }
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var extra = await _burgerDbContext.Extras.FindAsync(id);

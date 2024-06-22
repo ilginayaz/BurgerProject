@@ -1,5 +1,7 @@
+using BurgerProject.Data.Context;
 using BurgerProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace BurgerProject.Controllers
@@ -8,18 +10,29 @@ namespace BurgerProject.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 
-		public HomeController(ILogger<HomeController> logger)
-		{
-			_logger = logger;
-		}
 
-		public IActionResult Index()
-		{
-			return View();
-		}
+        private readonly BurgerDbContext _context;
+
+        public HomeController(ILogger<HomeController> logger, BurgerDbContext context)
+        {
+            _logger = logger;
+            _context = context;
+        }
+
+       
+
+        public IActionResult Index()
+        {
+            var menus = _context.Menus.ToList();
+            var model = new MenuViewModel
+            {
+                Menus = menus
+            };
+            return View(model);
+        }
 
 
-		public IActionResult About()
+        public IActionResult About()
 		{
 			return View();
 		}

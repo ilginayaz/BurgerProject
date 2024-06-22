@@ -1,4 +1,7 @@
-﻿@{
+﻿@model BurgerProject.Models.MenuViewModel
+
+
+@{
     ViewData["Title"] = "Ana Sayfa";
 }
 
@@ -13,8 +16,9 @@
                     BurgerGurme, misafirlerimize unutulmaz bir deneyim yaşatmayı hedeflemektedir. Size en lezzetli burgerleri sunarken, titizlikle çalışıyor ve lezzet dolu anlar yaşamanızı sağlıyoruz. Giriş yaptığınızda menülerimiz arasından istediğiniz lezzeti seçebilir ve keyifle siparişinizi verebilirsiniz. Her bir müşterimizin damak zevkine uygun çeşitli seçeneklerimizle, BurgerGurme her zaman hizmetinizde!
                 </p>
                 <div class="mt-md-5 mt-4">
-                    <a class="btn btn-primary btn-style mr-2" asp-controller="Menu" asp-action="Index" > Menülerimiz </a>
+                    <a class="btn btn-outline-primary btn-style" asp-controller="Menu" asp-action="Index"> Menülerimiz </a>
                     <a class="btn btn-outline-primary btn-style" href="#call"> Rezervasyon </a>
+                    <a class="btn btn-outline-primary btn-style" href="#call"> Foto Galeri </a>
                 </div>
             </div>
             <div class="col-lg-5">
@@ -139,102 +143,32 @@
     </div>
 </div>
 <!-- middle -->
-
 <!--  Work gallery section -->
 <div class="w3l-gallery2" id="gallery">
     <div class="burger galleryks py-5">
         <div class="container py-lg-4 py-md-3">
             <h6 class="title-small text-center">Galeri</h6>
-            <h3 class="title-big mb-lg-5 mb-4 text-center">Burger Galerimiz</h3>
-            <div class="row no-gutters masonry">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <a href="~/client/images/g1.jpg" class="js-img-viwer d-block" data-caption="Doğru Malzemeler, Doğru Burger."
-                       data-id="lion">
-                        <img src="~/client/images/g1.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
-                        <div class="content-overlay"></div>
-                        <div class="content-details fadeIn-top">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                            <h4>En iyisini keyfile yaşayın</h4>
+            <h3 class="title-big mb-lg-5 mb-4 text-center">Menü Galerimiz</h3>
+
+            <div class="row no-gutters masonry justify-content-center">
+                @foreach (var menu in Model.Menus)
+                {
+                    if (menu.ImageName is not null)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6" style="box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); transition: box-shadow 0.5s ease-in-out; border-radius: 7.5%; margin:15px; ">
+                            <a href="~/images/@menu.ImageName" class="js-img-viwer d-block" data-caption="@menu.MenuName" data-id="@menu.Id">
+                                <img src="~/images/@menu.ImageName" alt="@menu.MenuName" width="275" height="200" style="border-radius:7.5%;">
+                                <div class="content-overlay"></div>
+                                <div class="content-details fadeIn-top">
+                                    <span class="fa fa-plus" aria-hidden="true"></span>
+                                    <h4>@menu.MenuName</h4>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <a href="~/client/images/g2.jpg" class="js-img-viwer d-block" data-caption="Doğru Malzemeler, Doğru Burger."
-                       data-id="camel">
-                        <img src="~/client/images/g2.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
-                        <div class="content-overlay"></div>
-                        <div class="content-details fadeIn-top">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                            <h4>En iyisini keyfile yaşayın</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <a href="~/client/images/g3.jpg" class="js-img-viwer d-block" data-caption="Doğru Malzemeler, Doğru Burger."
-                       data-id="hippopotamus">
-                        <img src="~/client/images/g3.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
-                        <div class="content-overlay"></div>
-                        <div class="content-details fadeIn-top">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                            <h4>En iyisini keyfile yaşayın</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <a href="~/client/images/g4.jpg" class="js-img-viwer d-block" data-caption="Doğru Malzemeler, Doğru Burger."
-                       data-id="koala">
-                        <img src="~/client/images/g4.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
-                        <div class="content-overlay"></div>
-                        <div class="content-details fadeIn-top">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                            <h4>En iyisini keyfile yaşayın</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <a href="~/client/images/g5.jpg" class="js-img-viwer d-block" data-caption="Doğru Malzemeler, Doğru Burger."
-                       data-id="bear">
-                        <img src="~/client/images/g5.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
-                        <div class="content-overlay"></div>
-                        <div class="content-details fadeIn-top">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                            <h4>En iyisini keyfile yaşayın</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <a href="~/client/images/g6.jpg" class="js-img-viwer d-block" data-caption="Doğru Malzemeler, Doğru Burger."
-                       data-id="rhinoceros">
-                        <img src="~/client/images/g6.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
-                        <div class="content-overlay"></div>
-                        <div class="content-details fadeIn-top">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                            <h4>En iyisini keyfile yaşayın</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <a href="~/client/images/g7.jpg" class="js-img-viwer d-block" data-caption="Doğru Malzemeler, Doğru Burger."
-                       data-id="hippopotamus">
-                        <img src="~/client/images/g7.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
-                        <div class="content-overlay"></div>
-                        <div class="content-details fadeIn-top">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                            <h4>En iyisini keyfile yaşayın</h4>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <a href="~/client/images/g8.jpg" class="js-img-viwer d-block" data-caption="Doğru Malzemeler, Doğru Burger."
-                       data-id="koala">
-                        <img src="~/client/images/g8.jpg" class="img-fluid radius-image-full" alt="burger gallery" />
-                        <div class="content-overlay"></div>
-                        <div class="content-details fadeIn-top">
-                            <span class="fa fa-plus" aria-hidden="true"></span>
-                            <h4>En iyisini keyfile yaşayın</h4>
-                        </div>
-                    </a>
-                </div>
+                    }
+
+                    
+                }
             </div>
         </div>
     </div>
