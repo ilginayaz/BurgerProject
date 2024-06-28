@@ -8,6 +8,7 @@ Veri Tabanı: Ms SQL Server
 Veri Erişim Teknolojisi: Entity Framework CORE (CodeFirst)
 
 Veri Tabanı Sorguları: LINQ
+
 File Upload: IFormFile
 
 Kullanıcı kimlik doğrulama - Authentication & Authorization: ASP.NET Core Identity
