@@ -1,6 +1,7 @@
-# ASP.NET Core MVC BurgerGurme Projesi
+# 🍔 Burger Sipariş Uygulaması
 
-Kullanılan Teknolojiler
+## 🛠️ Teknolojiler
+
 Geliştirme Ortamı: Ms Visual Studio 2022
 Kod Altyapısı: C# - .NET CORE 8.0 , HTML-CSS-JavaScript
 
@@ -15,7 +16,12 @@ Kullanıcı kimlik doğrulama - Authentication & Authorization: ASP.NET Core Ide
 
 Tema Giydirme İşlemleri: Hazır template ve Bootstrap5 kütüphanesi
 
-Projeyi Başlatma
+## 🎯 Konu
+
+Projemizin amacı, kullanıcıların kayıt olup giriş yaptıktan sonra menüler üzerinden seçim yaparak siparişlerine ekstra malzeme ekleyip çıkartabilecekleri, ya da kayıt oldukları bilgileri, emaili ve şifreyi değiştirip güncelleyebilecekleri, admin tarafından kullanıcıların siparişlerini görüntüleneceği, sisteme menü ve ekstra malzeme ekleyebileceği, silebileceği veya güncelleyebileceği bir sistem geliştirmektir. 
+
+## 📋 Projeyi Başlatma
+
 appsettings.json dosyasındaki server bağlantısını düzenleyin. 
 PM Console'da add-migration [Migration Adı] komutunu yazıp çalıştırın.
 PM Console'da update-database diyerek veritabanını oluşturun.
@@ -38,6 +44,7 @@ Ayrıca layoutta bulunan Hoşgeldin"kullanıcı" nın üzerine dokunarak kullan�
 Keyifli incelemeler.
 
 
+## 🖥️ Proje Video
 
 Ön yüz için video;
 [![Watch the video](https://img.youtube.com/vi/fCi3T1hsiZk/maxresdefault.jpg)](https://youtu.be/fCi3T1hsiZk)
@@ -46,9 +53,7 @@ Admin için video;
 [![Watch the video](https://img.youtube.com/vi/hkp9JSoQ3_0/maxresdefault.jpg)](https://youtu.be/hkp9JSoQ3_0)
 
 
-
-
-## Contributors
+## 📬 İletişim
 
 - [@BurakGonca](https://github.com/BurakGonca)
 - [@benguurgen](https://github.com/benguurgen)
